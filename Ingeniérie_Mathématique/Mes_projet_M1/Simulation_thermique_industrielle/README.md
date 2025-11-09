@@ -106,10 +106,12 @@ Le programme calcule le pas de temps maximal stable et prend une marge de sécur
 ```python
 dt_stable = dx**2 / (4 * alpha)
 dt = 0.2 * dt_stable
+```
 ## 🛠️ Technologies
 - Python
 - NumPy
 - Matplotlib
+- Spyder
 - Jupyter Notebook
 
 ## 🚀 Installation

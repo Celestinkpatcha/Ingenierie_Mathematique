@@ -25,9 +25,9 @@ assert abs(dx - dy) < 1e-12, "Ici on suppose dx = dy pour le schéma explicite."
 # ------------------------
 # 3) Temps de simulation
 # ------------------------
-t_final = 6.0  # secondes de refroidissement à simuler
+t_final = 6.0  # temps en secondes de refroidissement à simuler
 dt_stable = dx**2 / (4 * alpha)
-dt = 0.2 * dt_stable   # on prend un peu en dessous pour être sûr
+dt = 0.2 * dt_stable   # on prend un peu en dessous pour être sûr de la stabilité
 Nt = int(t_final / dt)
 
 print(f"dx = {dx:.4e} m, dt max stable ~ {dt_stable:.4e} s, dt choisi = {dt:.4e} s, Nt = {Nt}")
@@ -39,8 +39,8 @@ T = np.full((Ny, Nx), T_cast)
 
 def impose_bords(T):
     """
-    Imposer la température du moule sur les 4 côtés.
-    Attention: on travaille avec T[j,i] = y,x
+    j'impose la température du moule sur les 4 côtés.
+    Attention: je travaille avec T[j,i] = y,x
     """
     T[0, :]  = T_mold   # bord bas
     T[-1, :] = T_mold   # bord haut
@@ -54,7 +54,7 @@ T = impose_bords(T)
 # 5) Boucle en temps
 # ------------------------
 T_list = [T.copy()]  # pour stocker quelques états pour visualiser après
-save_every = max(1, Nt // 5)  # on garde ~5 images
+save_every = max(1, Nt // 5)  
 
 for n in range(Nt):
     Tn = T.copy()
@@ -139,15 +139,11 @@ dt = 0.2 * dt_stable
 Nt = int(t_final / dt)
 
 # Paramètres convection
-h = 200.0          # W/m2K (exagéré pour voir l'effet)
-T_fluid = 250.0    # fluide/moule
+h = 200.0          
+T_fluid = 250.0    
 
 def simulate(T_mold=None, use_convection=False):
-    """
-    Simule le refroidissement et renvoie le champ final.
-    Si use_convection=True, on applique une loi de convection sur les bords.
-    Sinon, Dirichlet T=T_mold.
-    """
+    
     T = np.full((Ny, Nx), 700.0)
 
     def impose_dirichlet(T):
@@ -158,7 +154,7 @@ def simulate(T_mold=None, use_convection=False):
         return T
 
     # pré-calcul pour convection
-    beta = h * dx / k  # terme sans dimension
+    beta = h * dx / k  
 
     # initialisation bords
     if not use_convection:

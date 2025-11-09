@@ -105,10 +105,8 @@ Le schéma aux différences finies utilisé est le schéma explicite “Forward 
 
 $$
 T_{i,j}^{n+1}
-=
-T_{i,j}^n
-+
-\alpha \, \Delta t \left[
+= T_{i,j}^n
++ \alpha \, \Delta t \left[
 \frac{T_{i+1,j}^n - 2 T_{i,j}^n + T_{i-1,j}^n}{\Delta x^2}
 +
 \frac{T_{i,j+1}^n - 2 T_{i,j}^n + T_{i,j-1}^n}{\Delta y^2}
@@ -128,6 +126,7 @@ Dans le code on choisit :
 ```python
 dt_stable = dx**2 / (4 * alpha)
 dt = 0.2 * dt_stable
+```
 
 ## 🛠️ Technologies
 - Python

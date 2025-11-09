@@ -19,14 +19,14 @@ Développer une simulation numérique du refroidissement d’une pièce en alumi
 ## 2. Modélisation physique
 
 Le modèle repose sur l’**équation de la chaleur transitoire** en deux dimensions :
-
+$$
 \[
 \frac{\partial T}{\partial t} = \alpha \left( 
 \frac{\partial^2 T}{\partial x^2} + 
 \frac{\partial^2 T}{\partial y^2}
 \right)
 \]
-
+$$
 avec :
 - \( T(x, y, t) \) : température (°C)
 - \( \alpha = \dfrac{k}{\rho c_p} \) : diffusivité thermique (m²/s)

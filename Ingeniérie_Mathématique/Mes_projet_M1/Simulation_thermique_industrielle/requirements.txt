@@ -1,0 +1,8 @@
+# ============================================================
+#  Simulation du refroidissement d'une pièce moulée en aluminium
+#  Dépendances Python pour exécution sous Spyder / Anaconda
+# ============================================================
+
+# --- Librairies de base ---
+numpy>=1.26.0
+matplotlib>=3.8.0

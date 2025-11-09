@@ -1,0 +1,118 @@
+# 🧊 Simulation du refroidissement d’une pièce moulée en aluminium
+
+## 1. Contexte industriel
+
+Lors du moulage d’alliages d’aluminium, les pièces présentent souvent des **défauts internes** tels que des microfissures ou des contraintes résiduelles.  
+Ces défauts proviennent d’un **refroidissement non uniforme** : certaines zones de la pièce se refroidissent trop vite par contact avec le moule, tandis que le cœur reste chaud.  
+Ces différences de température engendrent des **gradients thermiques** qui provoquent des **contraintes mécaniques** susceptibles de fissurer la pièce.
+
+**Objectif du projet :**  
+Développer une simulation numérique du refroidissement d’une pièce en aluminium pour :
+- visualiser la propagation de la température dans le temps,
+- identifier les zones à refroidissement lent ou rapide,
+- évaluer les gradients thermiques et les contraintes associées,
+- tester plusieurs conditions aux limites (moule froid ou convection),
+- proposer des pistes d’optimisation du procédé de moulage.
+
+---
+
+## 2. Modélisation physique
+
+Le modèle repose sur l’**équation de la chaleur transitoire** en deux dimensions :
+
+\[
+\frac{\partial T}{\partial t} = \alpha \left( 
+\frac{\partial^2 T}{\partial x^2} + 
+\frac{\partial^2 T}{\partial y^2}
+\right)
+\]
+
+avec :
+- \( T(x, y, t) \) : température (°C)
+- \( \alpha = \dfrac{k}{\rho c_p} \) : diffusivité thermique (m²/s)
+- \( k \) : conductivité thermique de l’aluminium (≈ 180 W/m·K)
+- \( \rho \) : masse volumique (≈ 2700 kg/m³)
+- \( c_p \) : capacité thermique (≈ 900 J/kg·K)
+
+Valeur typique utilisée :  
+\[
+\alpha = 9 \times 10^{-5} \; \text{m}^2/\text{s}
+\]
+
+### 2.1. Condition initiale
+
+La pièce sort du moule à haute température :
+
+\[
+T(x, y, 0) = T_{\text{cast}} = 700^\circ \text{C}
+\]
+
+### 2.2. Conditions aux limites
+
+Deux types de conditions ont été étudiés :
+
+1. **Condition de Dirichlet (moule à température fixe)**  
+   \[
+   T|_{\partial \Omega} = T_{\text{mold}} = 250^\circ \text{C}
+   \]
+
+2. **Condition de convection (loi de Newton)**  
+   \[
+   -k \frac{\partial T}{\partial n} = h (T - T_\infty)
+   \]
+   avec \( h \) le coefficient d’échange thermique (W/m²·K) et \( T_\infty \) la température du fluide environnant.
+
+---
+
+## 3. Discrétisation numérique
+
+Le domaine rectangulaire étudié correspond à une section de la pièce moulée :
+
+\[
+L_x = 0{,}20 \; \text{m}, \quad L_y = 0{,}10 \; \text{m}
+\]
+
+discrétisée en :
+- \( N_x = 81 \) points selon x  
+- \( N_y = 41 \) points selon y
+
+soit un pas :
+\[
+\Delta x = \frac{L_x}{N_x - 1} = \Delta y = \frac{L_y}{N_y - 1}
+\]
+
+### 3.1. Schéma explicite (FTCS)
+
+Le schéma utilisé est **Forward Time, Central Space (FTCS)** :
+
+\[
+T_{i,j}^{n+1} = T_{i,j}^n + \alpha \Delta t \left[
+\frac{T_{i+1,j}^n - 2T_{i,j}^n + T_{i-1,j}^n}{\Delta x^2}
++
+\frac{T_{i,j+1}^n - 2T_{i,j}^n + T_{i,j-1}^n}{\Delta y^2}
+\right]
+\]
+
+### 3.2. Condition de stabilité
+
+Pour garantir la stabilité du schéma explicite :
+
+\[
+\Delta t \leq \frac{\Delta x^2}{4 \alpha}
+\]
+
+Le programme calcule le pas de temps maximal stable et prend une marge de sécurité :
+
+```python
+dt_stable = dx**2 / (4 * alpha)
+dt = 0.2 * dt_stable
+## 🛠️ Technologies
+- Python
+- NumPy
+- Matplotlib
+- Jupyter Notebook
+
+## 🚀 Installation
+```bash
+pip install -r requirements.txt
+jupyter notebook Equation_chaleur.ipynb

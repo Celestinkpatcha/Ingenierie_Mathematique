@@ -1,4 +1,4 @@
-# 🎓 M1 Ingénierie Mathématique - Portfolio
+# 🎓 M1 Ingénierie Mathématique
 
 ## 📚 Présentation
 Ce repository contient les projets réalisés durant mon Master en Ingénierie Mathématique.

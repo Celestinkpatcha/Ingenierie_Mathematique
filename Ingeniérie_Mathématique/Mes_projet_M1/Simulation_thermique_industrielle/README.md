@@ -16,10 +16,6 @@ Développer une simulation numérique du refroidissement d’une pièce en alumi
 
 ---
 
-## 2. Modélisation physique
-
-
-
 
 ## 2. Modélisation physique
 

@@ -56,9 +56,7 @@ $$
 
 **(2) Condition de convection (loi de Newton)**
 
-$$
-- k \, \frac{\partial T}{\partial n} = h \, \bigl( T - T_\infty \bigr)
-$$
+$$-k \frac{\partial T}{\partial n} = h \left( T - T_\infty \right)$$
 
 où $h$ est le coefficient d’échange (W·m⁻²·K⁻¹) et $T_\infty$ la température du fluide/moule.
 

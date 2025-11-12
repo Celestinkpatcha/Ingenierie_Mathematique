@@ -21,14 +21,7 @@ Développer une simulation numérique du refroidissement d’une pièce en alumi
 
 Le modèle repose sur l’équation de la chaleur transitoire en deux dimensions :
 
-$$
-\frac{\partial T}{\partial t}
-= \alpha \left(
-\frac{\partial^2 T}{\partial x^2}
-+ \frac{\partial^2 T}{\partial y^2}
-\right)
-$$
-
+$$\frac{\partial T}{\partial t} = \alpha \left( \frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2} \right)$$
 avec :
 
 - $T(x, y, t)$ : température (°C)

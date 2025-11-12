@@ -86,19 +86,11 @@ $$
 
 Dans la suite on prend $\Delta x = \Delta y$.
 
-### 3.1. Schéma explicite (FTCS)
+### 3.1. Schéma explicite
 
 Le schéma aux différences finies utilisé est le schéma explicite “Forward Time, Central Space” :
 
-$$
-T_{i,j}^{n+1}
-= T_{i,j}^n
-+ \alpha \, \Delta t \left[
-\frac{T_{i+1,j}^n - 2 T_{i,j}^n + T_{i-1,j}^n}{\Delta x^2}
-+
-\frac{T_{i,j+1}^n - 2 T_{i,j}^n + T_{i,j-1}^n}{\Delta y^2}
-\right]
-$$
+$$T_{i,j}^{n+1}= T_{i,j}^n+ \alpha \, \Delta t \left[\frac{T_{i+1,j}^n - 2 T_{i,j}^n + T_{i-1,j}^n}{\Delta x^2}+\frac{T_{i,j+1}^n - 2 T_{i,j}^n + T_{i,j-1}^n}{\Delta y^2}\right]$$
 
 ### 3.2. Condition de stabilité
 
